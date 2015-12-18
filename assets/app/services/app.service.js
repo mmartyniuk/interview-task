@@ -3,12 +3,17 @@
 
     angular
         .module('app')
-        .factory('InitialFactory', InitialFactory);
+        .factory('DataActions', DataActions);
 
-    function InitialFactory() {
+    DataActions.$inject = ['$localStorage'];
 
-      return {};
+    function DataActions($localStorage) {
 
+      return {
+      	save: function(data) {
+      		$localStorage.data = data;
+      	}
+      };
     }
 
 })();
