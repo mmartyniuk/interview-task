@@ -5,26 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Overhaul training task</title>
     <!-- inject:css -->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="/assets/style/style.css">
     <!-- endinject -->
   </head>
   <body>
     <div ng-app="app" class="container">
-      <div ng-controller="PaymentsCtrl as vm">
-        
+      <div ng-controller="PaymentsCtrl as vm" class="container-padding" layout-wrap>
+        <div flex="100">
+          <h2>Payments</h2>
+          <p class="heading-description">Text about charging $50 fee with his credit card, Text about charging<br> 
+          $50 fee with his credit card, Text about charging $50 fee with his credit card</p>
+        </div>
+        <hr>
+        <div flex="20">
+          [flex="20"]
+        </div>
+        <div flex="30">
+          [flex="30"]
+        </div>
+        <div flex="50">
+          [flex="50"]
+        </div>
+        <div flex="20">
+          [flex="20"]
+        </div>
+        <div flex="20">
+          [flex="20"]
+        </div>
+        <div flex="60">
+          [flex="60"]
+        </div>
       </div>
     </div>
     <!-- inject:js -->
-    <script src="/assets/bower_components/angular/angular.min.js"></script>
-    <script src="/assets/bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="/assets/bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="/assets/bower_components/angular-material/angular-material.min.js"></script>
-    <script src="/assets/bower_components/angular-messages/angular-messages.min.js"></script>
-    <script src="/assets/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="/assets/bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
     <script src="/assets/app/app.module.js"></script>
-    <script src="/assets/app/services/app.service.js"></script>
     <script src="/assets/app/controllers/app.controller.js"></script>
+    <script src="/assets/app/services/app.service.js"></script>
     <!-- endinject -->
   </body>
 </html>

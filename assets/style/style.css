@@ -1,5 +1,27 @@
-/* just to test for now
-body {
+h2 {
+  padding: 6px 5px 0 13px;
+  margin: 0;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+p {
+  font-size: 14px;
+}
+hr {
+  border-color: #E7EBEE;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 8px 0;
+  background-color: #E7EBEE;
+}
+.container-padding {
+  margin: 0 22px;
+  padding: 20px;
   background-color: #fff;
 }
-*/
+.heading-description {
+  padding-left: 13px;
+  letter-spacing: 0.2px;
+}
