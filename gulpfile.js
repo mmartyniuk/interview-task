@@ -6,7 +6,7 @@ var inject = require('gulp-inject');
 gulp.task('inject', function () {
 
   var target = gulp.src('index.html');
-  var sources = gulp.src(['assets/bower_components/**/*.min.js', 'assets/app/**/*js'], {read: false});
+  var sources = gulp.src(['assets/bower_components/**/*.min.js', '!assets/bower_components/angular-material/modules/**/*.js', 'assets/app/**/*js'], {read: false});
 
   return target.pipe(inject(sources))
     .pipe(gulp.dest('./'));
