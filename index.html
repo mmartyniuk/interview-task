@@ -1,54 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Overhaul training task</title>
-    <!-- inject:css -->
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="/assets/style/style.css">
-    <!-- endinject -->
-  </head>
-  <body>
-    <div ng-app="app" class="container">
-      <div ng-controller="PaymentsCtrl as vm" class="container-padding" layout-wrap>
-        <div flex="100">
-          <h2>Payments</h2>
-          <p class="heading-description">Text about charging $50 fee with his credit card, Text about charging<br> 
-          $50 fee with his credit card, Text about charging $50 fee with his credit card</p>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overhaul training task</title>
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="/assets/style/style.css">
+  <!-- endinject -->
+</head>
+
+<body>
+  <div ng-app="app" class="container" novalidate="">
+    <div ng-controller="PaymentsCtrl as vm" class="container-padding" layout-wrap>
+      <h2>Payments</h2>
+      <h6 class="heading-description">Text about charging $50 fee with his credit card, Text about charging<br> 
+          $50 fee with his credit card, Text about charging $50 fee with his credit card</h6>
+      <md-divider></md-divider>
+      <form name="userRegistration" ng-submit="vm.save()">
+        <div layout="row" class="form-container">
+          <div flex="20">
+            <h5 class="uppercase">billing details</h5>
+          </div>
+          <div flex="35">
+            <div layout="column" class="primary-info">
+              <div flex>
+                <md-input-container>
+                  <label for="userName" class="required uppercase">billing first name</label>
+                  <input type="text" id="userName" name="userName" ng-model="vm.userInfo.name" required>
+                </md-input-container>
+              </div>
+              <div flex>
+                <p class="required uppercase label-same">which address to use?</p>
+                <md-radio-group ng-model="vm.userInfo.address">
+                  <md-radio-button value="current" class="md-primary">Same as Current Address</md-radio-button>
+                  <md-radio-button value="company" class="md-primary">Same as Company Address</md-radio-button>
+                  <md-radio-button value="another" class="md-primary">I have another biling address</md-radio-button>
+                </md-radio-group>
+              </div>
+            </div>
+          </div>
+          <div flex="45">
+            <div layout="column" class="secondary-info">
+              <div flex>
+                <md-input-container>
+                  <label for="userLastName" class="required uppercase" required>billing last name</label>
+                  <input type="text" id="userLastName" ng-model="vm.userInfo.surname" required>
+                </md-input-container>
+              </div>
+              <div flex>
+                <p class="uppercase label-same">billing address</p>
+                <span class="address-output" ng-show="vm.userInfo.address === 'current'">One Congress Plaza, 111 Congress Avenue, Suite 2700 Austin TX 78701</span>
+                <span class="address-output" ng-show="vm.userInfo.address === 'company'">4648 Gentle Manor, Nine Miles, Michigan, 49902-5061, US</span>
+                <span class="address-output" ng-show="vm.userInfo.address === 'another'">8206 Indian Expressway, Hamma Hamma, Michigan, 49592-2639, US</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <hr>
-        <div flex="20">
-          [flex="20"]
+        <md-divider class="secondary-divider"></md-divider>
+        <div layout="row" class="form-container payment-info">
+          <div flex="20">
+            <h5 class="uppercase">card details</h5>
+          </div>
+          <div flex="25" class="customized-width-22">
+            <div layout="column" class="primary-info">
+              <div flex>
+                <md-input-container>
+                  <label for="cardNumber" class="required uppercase">card number</label>
+                  <input type="text" id="cardNumber" ng-model="vm.userInfo.cardNumber" restrict-numeric card-number-formatter card-number-validator
+                  minlength="16" required>
+                </md-input-container>
+              </div>
+              <div flex>
+                <md-input-container>
+                  <label for="cardName" class="required uppercase">name on card</label>
+                  <input type="text" id="cardName" ng-model="vm.userInfo.cardOwner" required>
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+          <div flex="15" class="customized-width-18">
+            <div layout="column" class="primary-info">
+              <div flex>
+                <p class="required label-same">Expiry Date</p>
+              </div>
+              <div flex>
+                <md-input-container>
+                  <label for="cardCvc" class="required uppercase">security code</label>
+                  <input type="password" id="cardCvc" name="cardCvc" ng-model="vm.userInfo.cvcCode" restrict-numeric card-cvc-formatter ng-pattern="/\d*/"
+                  required minlength="3" placeholder="&#9679;&#9679;&#9679;&#9679;">
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+          <div flex>
+            <div layout="column" class="date-n-security">
+              <div layout="row">
+                <md-input-container>
+                  <label for="month" class="required uppercase">month</label>
+                  <md-select id="month" ng-model="vm.userInfo.cardExpirationMonth" required>
+                    <md-option ng-repeat="(index,month) in vm.expirationMonthData" ng-selected="(index == vm.userInfo.cardExpirationMonth - 1 || index == 0) ? true:false"
+                    value="{{month.number}}">{{month.number}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container>
+                  <label for="year" class="required uppercase">year</label>
+                  <md-select id="year" ng-model="vm.userInfo.cardExpirationYear" required>
+                    <md-option ng-repeat="(index,year) in vm.expirationYearData" ng-selected="(index == vm.userInfo.cardExpirationYear - 15 || index == 0) ? true:false"
+                    value="{{year.number}}">{{year.number}}</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div flex class="card-description">
+                <img src="assets/img/card.png" alt="cvc code" />
+                <span class="cvc-description">This is a 3-4 digit number<br> 
+                on the back of your card</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div flex="30">
-          [flex="30"]
+        <md-divider class="footer-divider"></md-divider>
+        <div layout="row" layout-align="end center" flex class="button-submit-container">
+          <span flex></span>
+          <md-button class="md-raised" type="button">Pay & Finish</md-button>
         </div>
-        <div flex="50">
-          [flex="50"]
-        </div>
-        <div flex="20">
-          [flex="20"]
-        </div>
-        <div flex="20">
-          [flex="20"]
-        </div>
-        <div flex="60">
-          [flex="60"]
-        </div>
-      </div>
+      </form>
     </div>
-    <!-- inject:js -->
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="/bower_components/angular-material/angular-material.min.js"></script>
-    <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
-    <script src="/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
-    <script src="/assets/app/app.module.js"></script>
-    <script src="/assets/app/controllers/app.controller.js"></script>
-    <script src="/assets/app/services/app.service.js"></script>
-    <!-- endinject -->
-  </body>
+  </div>
+  <!-- inject:js -->
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="/bower_components/angular-material/angular-material.min.js"></script>
+  <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="/bower_components/angular-route/angular-route.min.js"></script>
+  <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
+  <script src="/bower_components/angular-payment/dist/angular-payment-0.3.0.min.js"></script>
+  <script src="/bower_components/angular-payment/dist/angular-payment-tpls-0.3.0.min.js"></script>
+  <script src="/bower_components/angular-payments/lib/angular-payments.min.js"></script>
+  <script src="/assets/app/app.module.js"></script>
+  <script src="/assets/app/controllers/app.controller.js"></script>
+  <script src="/assets/app/services/app.service.js"></script>
+  <!-- endinject -->
+</body>
+
 </html>

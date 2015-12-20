@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-      .module('app', ['ngMaterial', 'ngRoute', 'ngStorage']);
+      .module('app', ['ngMaterial', 'ngRoute', 'ngStorage', 'payment']);
 
 })();
