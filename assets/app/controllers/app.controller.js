@@ -15,8 +15,6 @@
     vm.save = save;
     vm.expirationMonthData = DataActions.getMonths();
     vm.expirationYearData = DataActions.getYears();
-    // vm.allFieldsFilled = allFieldsFilled;
-    console.log($localStorage.data);
 
     // info about user will be stored here if there is no data to fill into the page
     vm.userInfo = $localStorage.data || {};

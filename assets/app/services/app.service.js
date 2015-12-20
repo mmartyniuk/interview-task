@@ -13,9 +13,6 @@
             save: function (data) {
                 $localStorage.data = data;
             },
-            get: function () {
-                return $localStorage.data;
-            },
             getMonths: function () {
                 return [
                     { 'number': '1' },
